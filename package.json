@@ -10,8 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@igds/core-web": "^0.1.28",
+    "@igds/react": "^0.1.28",
+    "@igds/tokens": "^0.1.28",
+    "html2canvas": "^1.4.1",
+    "html2pdf": "^0.0.11",
+    "html2pdf.js": "^0.13.0",
+    "i18n": "^0.15.3",
+    "multi-channel-core": "github:MiriamGluskinos-dev/MultiChannelWebCore",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-i18next": "^16.5.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -24,6 +33,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "sass-embedded": "^1.97.2",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4"

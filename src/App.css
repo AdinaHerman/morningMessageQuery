@@ -1,10 +1,17 @@
+
 #root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  height: fit-content;
 }
-
+body {
+    height: fit-content;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -16,6 +23,10 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+.mainSearchContainer {
+  width: 70%;
+  height: fit-content;
 }
 
 @keyframes logo-spin {

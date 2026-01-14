@@ -1,0 +1,13 @@
+{
+    "fromDate": "מתאריך",
+    "toDate": "עד תאריך",
+    "textInHeader": "טקסט בכותרת",
+    "textInBody": "טקסט בתוכן",
+    "recipientType": "סוג נמען",
+    "messageType": "סוג ההודעה",
+    "queryTitle": "שאילתת הודעות בוקר",
+    "messageId": "מזהה הודעה",
+    "subject": "נושא",
+    "date": "תאריך",
+    "category": "קטגוריה"
+}

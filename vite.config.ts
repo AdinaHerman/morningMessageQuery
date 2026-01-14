@@ -7,7 +7,27 @@ export default defineConfig({
     react({
       babel: {
         plugins: [['babel-plugin-react-compiler']],
+        
       },
     }),
   ],
+  server: {
+    proxy: {
+      "/shaarolami": {
+        target: "https://shaarolami-query.customs.mof.gov.il",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/shaarolami/, "")
+      },
+      
+    }
+  }
 })
+
+
+// "/govscript": {
+      //   target: "https://www.gov.il",
+      //   changeOrigin: true,
+      //   secure: true,
+      //   rewrite: (path) => path.replace(/^\/govscript/, "")
+      // }

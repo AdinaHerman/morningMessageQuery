@@ -1,0 +1,25 @@
+{
+  "responseHeader": {
+    "transmissionDateTime": "2026-01-11T07:59:26.8410777+02:00",
+    "applicationId": 0,
+    "remark": null
+  },
+  "morningMessages": [
+    {
+      "messageId": 592,
+      "category": 2,
+      "categoryName": "תפעול",
+      "subject": "החלפת המפתח הציבורי של צומת השירותים הממשלתית",
+      "contentHtml": "<div dir=\"ltr\" style=\"text-align:justify;font-family:Georgia;font-style:normal;font-weight:normal;font-size:16pt;color:#000000;\"><p dir=\"rtl\" style=\"text-align:right;font-family:Segoe UI;font-size:12pt;margin:0px 0px 0px 0px;\"><span>שלום</span></p><p dir=\"rtl\" style=\"text-align:right;font-family:Segoe UI;font-size:12pt;margin:0px 0px 0px 0px;\"><span>בהמשך להודעות קודמות שנשלחו לגבי החלפת תעודה ציבורית, ניתן להתחיל לעבוד עם התעודה החדשה.</span></p><p dir=\"rtl\" style=\"text-align:right;font-family:Segoe UI;font-size:12pt;margin:0px 0px 0px 0px;\"><span>במידה ולקוח שולח מסרים ולא מקבל תגובה, שיפנה לספק התוכנה שלו ויבדוק האם התעודה הוחלפה.</span></p><p dir=\"rtl\" style=\"text-align:right;font-family:Arial;font-weight:bold;font-size:14.666666666666666pt;margin:0px 0px 0px 0px;\"><span style=\"color:#548DD4;\">בברכה,</span></p><p dir=\"rtl\" style=\"text-align:right;font-family:Arial;font-weight:bold;font-size:14.666666666666666pt;margin:0px 0px 0px 0px;\"><span style=\"color:#548DD4;\">יחזקאל ישראלי</span></p><p dir=\"rtl\" style=\"text-align:right;font-family:Arial;font-weight:bold;font-size:14.666666666666666pt;margin:0px 0px 0px 0px;\"><span style=\"color:#548DD4;\">מנהל אינטגרציה – פרויקט שער עולמי</span></p><p dir=\"rtl\" style=\"text-align:right;font-family:Arial;font-weight:bold;font-size:14.666666666666666pt;margin:0px 0px 0px 0px;\"><span style=\"color:#548DD4;\">הנהלת רשות המיסים</span></p><p dir=\"rtl\" style=\"text-align:right;font-family:Arial;font-weight:bold;font-size:14.666666666666666pt;margin:0px 0px 0px 0px;\"><span style=\"color:#548DD4;\">משרד: 074-7611148</span></p><p dir=\"rtl\" style=\"text-align:left;font-family:Arial;font-size:14.666666666666666pt;margin:0px 0px 0px 0px;\"><a style=\"color:#0066CC;text-decoration:underline;\"><span style=\"color:#0000FF;text-decoration:underline;\">Yehezkelis@taxes.gov.il</span></a></p><p dir=\"rtl\" style=\"text-align:left;font-family:Arial;font-size:14.666666666666666pt;margin:0px 0px 0px 0px;\"><a style=\"color:#0066CC;text-decoration:underline;\"><span style=\"color:#0000FF;text-decoration:underline;\">http://taxes.gov.il</span></a></p></div>",
+      "messageDate": "2026-01-06"
+    },
+    {
+      "messageId": 591,
+      "category": 2,
+      "categoryName": "תפעול",
+      "subject": "מוניות - איסור שינוי שם בעל רכב ושינוי מספר זכות ציבורית לאחר התרה מהמכס",
+      "contentHtml": "<div dir=\"ltr\" style=\"text-align:justify;font-family:Georgia;font-style:normal;font-weight:normal;font-size:16pt;color:#000000;\"><p dir=\"rtl\" style=\"text-align:right;font-family:Segoe UI;font-size:12pt;margin:0px 0px 0px 0px;\"><span>שלום</span></p><p dir=\"rtl\" style=\"text-align:right;font-family:Segoe UI;font-size:12pt;margin:0px 0px 0px 0px;\"><span>במוניות שמשוחררות מהמכס בהטבת מס בפטור מותנה,</span><span style=\"font-weight:bold;text-decoration:underline;\">אסור</span><span> לשנות את שם היבואן הזכאי המצויין בהצהרת היבוא </span><span style=\"font-weight:bold;text-decoration:underline;\">ואסור</span><span> לשנות את מספר הזכות הציבורית ששימשה את היבואן הזכאי לשחרור המונית מהמכס ,</span></p><p dir=\"rtl\" style=\"text-align:right;font-family:Segoe UI;font-size:12pt;margin:0px 0px 0px 0px;\"><span>משרד התחבורה התבקש לחסום אפשרות זאת במערכות הממוחשבות שלו,</span></p><p dir=\"rtl\" style=\"text-align:right;font-family:Segoe UI;font-size:12pt;margin:0px 0px 0px 0px;\"><span>המכס יאתר יבואנים שביצעו שינויים כאלה ויפעל כמתחייב בחוק,</span></p><p dir=\"rtl\" style=\"text-align:right;font-family:Segoe UI;font-size:12pt;margin:0px 0px 0px 0px;\"><span>לעידכונכם וטיפולכם</span></p></div>",
+      "messageDate": "2026-01-04"
+    }
+  ]
+}

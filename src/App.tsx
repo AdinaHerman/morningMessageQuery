@@ -1,35 +1,73 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import SearchContent from "./components/searchContent/SearchContent";
+import { MainSearchContainer } from "multi-channel-core/src";
+import {useRef, useState } from "react";
+import ResultsComponent from "./components/resultsComponent/ResultsComponent";
+import './index.css'
+import './App.css';
+import './i18n/config';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showResults, setShowResults] = useState(false);
+  const resultsRef = useRef(null);
+
+  const [searchParams, setSearchParams] = useState({
+    fromDate: new Date(Date.now() - 7 * 86400000),
+    toDate: new Date(),
+    textInHeader: "",
+    textInBody: "",
+    recipientType: "",
+    messageType: ""
+  });
+
+  const handleClear = () => {
+    setSearchParams({
+      fromDate: new Date(Date.now() - 7 * 86400000),
+      toDate: new Date(),
+      textInHeader: "",
+      textInBody: "",
+      recipientType: "",
+      messageType: ""
+    });
+  };
+
+  const handleSearch = () => {
+    setShowResults(true);
+    setTimeout(() => {
+      if (resultsRef.current) {
+        const yOffset = -80; 
+        const element = resultsRef.current;
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({
+          top: y,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  };
+
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <MainSearchContainer
+        hasClearButton
+        onClear={handleClear}
+        hasSearchButton
+        onSearch={handleSearch}
+        pageTitle={"שאילתת הודעות בוקר"}
+      >
+        <SearchContent
+          searchParams={searchParams}
+          setSearchParams={setSearchParams}
+        />
+      </MainSearchContainer>
+
+      {showResults && (
+        <div ref={resultsRef} >
+          <ResultsComponent />
+        </div>
+      )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,13 @@
+{
+  "fromDate": "From Date",
+  "toDate": "To Date",
+  "textInHeader": "Text in Header",
+  "textInBody": "Text in Body",
+  "recipientType": "Recipient Type",
+  "messageType": "Message Type",
+  "queryTitle": "Morning Message Query",
+  "messageId": "Message ID",
+  "subject": "Subject",
+  "date": "Date",
+  "category": "Category"
+}
