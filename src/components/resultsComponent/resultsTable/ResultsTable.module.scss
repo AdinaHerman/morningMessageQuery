@@ -4,9 +4,15 @@
 
 
 .table-container {
-    width:100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 64px;
+}
+
+@media screen and (max-width: 768px) {
+    .table-container {
+        margin-bottom: 32px;
+    }
+    
 }

@@ -1,15 +1,46 @@
-import Title from 'multi-channel-core/src/ui/common/title/Title';
-import ResultsTable from '../resultsTable/ResultsTable';
-import './ResultsComponent.scss';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Toast } from '@igds/react/toast';
+import { useApiRequest,Title } from 'multi-channel-core';
+import type { SearchParamsType } from '../../types/types';
+import ResultsTable from './resultsTable/ResultsTable';
+import mockData from '../../mocks/morning-messages.mock.json';
+import style from'./ResultsComponent.module.scss';
 
+const ResultsComponent = ({ searchFilterParams }: { searchFilterParams: SearchParamsType }) => {
+    const [resultExist, setResultExist] = useState(false);
+    const { t } = useTranslation();
+    const { response: res } = useApiRequest({
+        url: "/rest-api-to-get-response-page-data",
+        method: "GET",
+        data: { ...searchFilterParams }
+    });
 
-
-function ResultsComponent() {
+    useEffect(() => {
+        if (res.status == 'success' && mockData.morningMessages.length > 0) {
+            setResultExist(true);
+        }
+    }, [res.status]);
 
     return (
         <div>
-            <Title title='תוצאות חיפוש' subTitle={''} />
-            <ResultsTable />
+            {resultExist ? (
+                <>
+                    <Title title={t('searchResults')} subTitle={''} />
+                    <ResultsTable results={mockData.morningMessages} />
+                </>
+            ) : (
+                <Toast
+                    className={style.toast}
+                    type="inline"
+                    variant="failure"
+                >
+                    <span>
+                       {t('noResultsMessage')}
+                    </span>
+                </Toast>
+            )
+            }
         </div>
     );
 }

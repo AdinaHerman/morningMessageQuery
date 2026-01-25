@@ -1,12 +1,15 @@
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from "react-i18next";
+import html2pdf from 'html2pdf.js';
 import { Icon } from '@igds/react/icon';
 import { Table, TableHeader, TableRow } from '@igds/react/table';
-import React, { useEffect, useState } from 'react';
-import { t } from "i18next";
-import html2pdf from 'html2pdf.js';
-import './ResultsTable.scss';
+import type { resultsType, rowType } from '../../../types/types';
+import style from './ResultsTable.module.scss';
 
-function ResultsTable() {
-  const [rows, setRows] = useState([]);
+
+const ResultsTable = ({ results }: { results: resultsType[] }) => {
+  const { t } = useTranslation();
+  const [rows, setRows] = useState<rowType[]>([]);
 
   const columns = [
     { id: '1', name: '' },
@@ -17,33 +20,31 @@ function ResultsTable() {
   ];
 
   useEffect(() => {
-    fetch('/mocks/morning-messages.mock.json')
-      .then(res => res.json())
-      .then(data => {
-        const mappedRows = data.morningMessages.map((msg, index) => ({
-          id: `row-${index}`,
-          messageId: msg.messageId,
-          contentHtml: msg.contentHtml,
-          cells: [
-            { value: '' },
-            { value: msg.messageId.toString() },
-            { value: msg.subject },
-            { value: formatDate(msg.messageDate) },
-            { value: msg.categoryName }
-          ]
-        }));
+      const mappedRows = results.map((msg, index) => ({
+        id: `row-${index}`,
+        messageId: msg.messageId,
+        contentHtml: msg.contentHtml,
+        cells: [
+          { value: '' },
+          { value: msg.messageId.toString() },
+          { value: msg.subject },
+          { value: formatDate(msg.messageDate) },
+          { value: msg.categoryName }
+        ]
+      }));
 
-        setRows(mappedRows);
-      });
+      setRows(mappedRows);
+
   }, []);
 
-  const formatDate = (dateStr) => {
+  
+
+  const formatDate = (dateStr:string) => {
     const [year, month, day] = dateStr.split('-');
     return `${day}/${month}/${year}`;
   };
 
-  // פונקציה ליצירת PDF
-  const generatePDF = (htmlContent, fileName = 'message.pdf') => {
+  const generatePDF = (htmlContent: string, fileName = 'message.pdf') => {
     const element = document.createElement('div');
     element.innerHTML = htmlContent;
     document.body.appendChild(element);
@@ -62,14 +63,13 @@ function ResultsTable() {
   };
 
   return (
-    <div className="table-container">
+    <div className={style.tableContainer}>
       <Table>
         <TableHeader columns={columns} />
 
         {rows.map((row, rowIndex) => (
           <React.Fragment key={row.id}>
-            {/* תא האייקון */}
-            <div slot={`row=${rowIndex}:cell=0`} className="table-icon-cell">
+            <div slot={`row=${rowIndex}:cell=0`} className={style.iconCell}>
               <a
                 href="#"
                 onClick={(e) => {
@@ -80,8 +80,6 @@ function ResultsTable() {
                 <Icon name="file" size="large" color="#0c3058" />
               </a>
             </div>
-
-            {/* שורת הטבלה */}
             <TableRow
               cells={row.cells}
               expandable="false"

@@ -9,5 +9,8 @@
   "messageId": "Message ID",
   "subject": "Subject",
   "date": "Date",
-  "category": "Category"
+  "category": "Category",
+  "dailyTip": "daily Tip",
+  "searchResults": "Search Results",
+  "noResultsMessage": "No messages were found that match the selected parameters."
 }

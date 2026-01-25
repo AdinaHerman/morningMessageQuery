@@ -9,5 +9,9 @@
     "messageId": "מזהה הודעה",
     "subject": "נושא",
     "date": "תאריך",
-    "category": "קטגוריה"
+    "category": "קטגוריה",
+    "dailyTip": "טיפ יומי",
+    "searchResults": "תוצאות חיפוש",
+    "noResultsMessage": "לא נמצאו הודעות העונות לפרמטרים שנבחרו."
+
 }

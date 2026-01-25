@@ -1,60 +1,72 @@
+import { useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { DatePicker } from "@igds/react/date-picker";
 import { Dropdown } from "@igds/react/dropdown";
 import { Input } from "@igds/react/input";
-import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from "react";
-import './SearchContent.scss'
+import { useSystemTableApiRequest } from "multi-channel-core";
+import type { SearchParamsType, OriginalRecipientType, OriginalMessageType, DropdownOptionType } from '../../types/types';
+import style from'./SearchContent.module.scss'
 
 
-function SearchContent({ searchParams, setSearchParams }) {
+
+interface SearchParamsProps {
+    searchParams: SearchParamsType;
+    setSearchParams: (param: SearchParamsType) => void;
+}
+
+const SearchContent = (Props: SearchParamsProps) => {
+    const { searchParams, setSearchParams } = Props;
     const { t } = useTranslation();
     const [recipientTypeList, setRecipientTypeList] = useState([]);
     const [messageTypeList, setMessageTypeList] = useState([]);
+    const { response: recepientResponse } = useSystemTableApiRequest({
+        tableName: 'MorningMessageRecepient',
+    });
+    const { response: morningMessageTypeResponse } = useSystemTableApiRequest({
+        tableName: 'MorningMessageType',
+    });
+
     useEffect(() => {
-        const loadOptions = async () => {
-            try {
-                const getTableUrl = "/shaarolami/CustomspilotWeb/SystemTables/api/GetTableData?tableName=";
-                const RecipientRes = await fetch(getTableUrl + "MorningMessageRecepient");
-                const recipientData = await RecipientRes.json();
-                const recipientMapData = recipientData.map(item => ({
-                    id: item.ID,
-                    label: item.Name
-                }));
-                setRecipientTypeList(recipientMapData);
+        if (recepientResponse.data) {
+            const recipientMapData = recepientResponse.data.map((item: OriginalRecipientType) => ({
+                id: item.ID,
+                label: item.Name
+            })).sort((a: DropdownOptionType, b: DropdownOptionType) => a.label.localeCompare(b.label));
+            setRecipientTypeList(recipientMapData);
+        }
+    }, [recepientResponse.data]);
 
-                const MessageRes = await fetch(getTableUrl + "MorningMessageType");
-                const messageData = await MessageRes.json();
-                const messageMapData = messageData.map(item => ({
-                    id: item.ID,
-                    label: item.Name
-                }));
-                setMessageTypeList(messageMapData);
-            } catch (e) {
-                console.error(e);
-            }
-        };
-
-        loadOptions();
-    }, []);
+    useEffect(() => {
+        if (morningMessageTypeResponse.data) {
+            const messageMapData = morningMessageTypeResponse.data.map((item: OriginalMessageType) => ({
+                id: item.ID,
+                label: item.Name
+            })).filter((item: DropdownOptionType) => item.label !== t('dailyTip'));
+            setMessageTypeList(messageMapData);
+        }
+    }, [morningMessageTypeResponse.data]);
 
 
     const handleChange = (e) => {
-        if (e.target.name === "fromDate" || e.target.name === "toDate") {
-            setSearchParams({
-                ...searchParams,
-                [e.target.name]: new Date(e.target.value),
-            });
-        } else {
-            setSearchParams({
-                ...searchParams,
-                [e.target.name]: e.target.value,
-            });
+        const { name, value, options, selectedIndex } = e.target;
+
+        let parsedValue = value;
+
+        if (name === "fromDate" || name === "toDate") {
+            parsedValue = new Date(value);
+        } else if (name === "recipientType" || name === "messageType") {
+            parsedValue = options[selectedIndex].text;
         }
+
+        setSearchParams({
+            ...searchParams,
+            [name]: parsedValue,
+        });
     };
 
     return (
         <>
-            <div className="container">
+            <div className={style.container}>
                 <DatePicker
                     name="fromDate"
                     value={searchParams.fromDate.toLocaleDateString('en-GB')}
@@ -81,8 +93,8 @@ function SearchContent({ searchParams, setSearchParams }) {
                 />
                 <Dropdown
                     label={t('recipientType')}
-                    value={searchParams.recipientType}
                     name="recipientType"
+                    value={searchParams.recipientType}
                     options={recipientTypeList}
                     onChange={handleChange}
                 />
@@ -96,5 +108,8 @@ function SearchContent({ searchParams, setSearchParams }) {
             </div>
         </>
     );
-}
+};
+
+
+
 export default SearchContent;
