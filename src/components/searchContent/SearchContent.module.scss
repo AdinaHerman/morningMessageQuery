@@ -1,13 +1,9 @@
 .container {
-  
   display: flex;
-  flex-wrap: wrap;          // ירדו שורה אם אין מקום
-  justify-content: center;  // מרכז אופקית
-  gap: 16px;                // רווח בין הקומפוננטות
-  // padding: 0 20px;          // רווח מצד ימין ושמאל
-  // margin-bottom: 40px;      // רווח מלמטה
-
+  flex-wrap: wrap;         
+  justify-content: center;
+  gap: 16px;
   > * {
-    flex: 0 1 200px;        // רוחב בסיסי לכל קומפוננטה, גמיש
+    flex: 0 1 200px;
   }
 }

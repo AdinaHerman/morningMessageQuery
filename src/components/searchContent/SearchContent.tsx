@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
-import { DatePicker } from "@igds/react/date-picker";
-import { Dropdown } from "@igds/react/dropdown";
-import { Input } from "@igds/react/input";
+import { DatePicker,Dropdown,Input } from "@igds/react";
 import { useSystemTableApiRequest } from "multi-channel-core";
-import type { SearchParamsType, OriginalRecipientType, OriginalMessageType, DropdownOptionType } from '../../types/types';
+import type { SearchParamsType, OriginalEntityType, DropdownOptionType } from '../../types/apiTypes';
 import style from'./SearchContent.module.scss'
 
 
 
-interface SearchParamsProps {
+interface SearchContentProps {
     searchParams: SearchParamsType;
     setSearchParams: (param: SearchParamsType) => void;
 }
 
-const SearchContent = (Props: SearchParamsProps) => {
-    const { searchParams, setSearchParams } = Props;
+const SearchContent = (props: SearchContentProps) => {
+    const { searchParams, setSearchParams } = props;
     const { t } = useTranslation();
     const [recipientTypeList, setRecipientTypeList] = useState([]);
     const [messageTypeList, setMessageTypeList] = useState([]);
@@ -28,7 +26,7 @@ const SearchContent = (Props: SearchParamsProps) => {
 
     useEffect(() => {
         if (recepientResponse.data) {
-            const recipientMapData = recepientResponse.data.map((item: OriginalRecipientType) => ({
+            const recipientMapData = recepientResponse.data.map((item: OriginalEntityType) => ({
                 id: item.ID,
                 label: item.Name
             })).sort((a: DropdownOptionType, b: DropdownOptionType) => a.label.localeCompare(b.label));
@@ -38,7 +36,7 @@ const SearchContent = (Props: SearchParamsProps) => {
 
     useEffect(() => {
         if (morningMessageTypeResponse.data) {
-            const messageMapData = morningMessageTypeResponse.data.map((item: OriginalMessageType) => ({
+            const messageMapData = morningMessageTypeResponse.data.map((item: OriginalEntityType) => ({
                 id: item.ID,
                 label: item.Name
             })).filter((item: DropdownOptionType) => item.label !== t('dailyTip'));

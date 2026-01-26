@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import html2pdf from 'html2pdf.js';
 import { Icon } from '@igds/react/icon';
 import { Table, TableHeader, TableRow } from '@igds/react/table';
-import type { resultsType, rowType } from '../../../types/types';
+import type { resultsType, rowType } from '../../../types/apiTypes';
 import style from './ResultsTable.module.scss';
 
 

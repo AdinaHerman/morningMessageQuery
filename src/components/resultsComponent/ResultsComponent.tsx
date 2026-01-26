@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Toast } from '@igds/react/toast';
 import { useApiRequest,Title } from 'multi-channel-core';
-import type { SearchParamsType } from '../../types/types';
-import ResultsTable from './resultsTable/ResultsTable';
 import mockData from '../../mocks/morning-messages.mock.json';
-import style from'./ResultsComponent.module.scss';
+import type { SearchParamsType } from '../../types/apiTypes';
+import ResultsTable from './resultsTable/resultsTable';
+import style from'./resultsComponent.module.scss';
 
 const ResultsComponent = ({ searchFilterParams }: { searchFilterParams: SearchParamsType }) => {
     const [resultExist, setResultExist] = useState(false);
