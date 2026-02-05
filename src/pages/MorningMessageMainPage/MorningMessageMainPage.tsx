@@ -1,56 +1,36 @@
 import { MainSearchContainer, RootLayout } from "multi-channel-core";
 import { useRef, useState } from "react";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'multi-channel-core';
+import { getDateDaysAgo, scrollToResults } from "../../utils/functions";
 import SearchContent from "../../components/searchContent/searchContent";
 import ResultsComponent from "../../components/resultsComponent/resultsComponent";
-import { getDateDaysAgo } from "../../utils/functions";
 
-function MorningMessageMainPage() {
+const initialSearchParams = {
+    fromDate: new Date(getDateDaysAgo(7)),
+    toDate: new Date(),
+    textInHeader: "",
+    textInBody: "",
+    recipientType: "",
+    messageType: ""
+}
+
+const MorningMessageMainPage = () => {
     const [showResults, setShowResults] = useState(false);
     const resultsRef = useRef(null);
     const { t } = useTranslation();
-
-    const [searchParams, setSearchParams] = useState({
-        fromDate: new Date(getDateDaysAgo(7)),
-        toDate: new Date(),
-        textInHeader: "",
-        textInBody: "",
-        recipientType: "",
-        messageType: ""
-    });
-
-    const handleClear = () => {
-        setSearchParams({
-            fromDate: new Date(getDateDaysAgo(7)),
-            toDate: new Date(),
-            textInHeader: "",
-            textInBody: "",
-            recipientType: "",
-            messageType: ""
-        });
-    };
+    const [searchParams, setSearchParams] = useState(initialSearchParams);
 
     const handleSearch = () => {
         setShowResults(true);
-        scrollToResults();
-
+        scrollToResults(resultsRef);
     };
-    const scrollToResults = () => {
-        setTimeout(() => {
-            if (resultsRef.current) {
-                const yOffset = -80;
-                const element = resultsRef.current;
-                const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                window.scrollTo({
-                    top: y,
-                    behavior: 'smooth'
-                });
-            }
-        }, 100);
-    }
+
+    const handleClear = () => {
+        setSearchParams(initialSearchParams);
+    };
 
     return (
-        <RootLayout>
+        <>
             <MainSearchContainer
                 buttonsProps={{
                     onSearch: handleSearch,
@@ -65,12 +45,12 @@ function MorningMessageMainPage() {
             </MainSearchContainer>
 
             {showResults && (
-                <div ref={resultsRef} >
+                <div ref={resultsRef}>
                     <ResultsComponent searchFilterParams={searchParams} />
                 </div>
             )}
 
-        </RootLayout>
+        </>
     );
 }
 

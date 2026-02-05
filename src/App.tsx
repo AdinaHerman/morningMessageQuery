@@ -1,9 +1,9 @@
 import {RootLayout} from "multi-channel-core";
-import './multi-channel-core.css'
-import MorningMessageMainPage from "./pages/MorningMessageMainPage/MorningMessageMainPage";
 import './i18n/config';
+import 'multi-channel-core/style'
+import MorningMessageMainPage from "./pages/MorningMessageMainPage/MorningMessageMainPage";
 
-function App() {
+const App = () => {
   return (
     <RootLayout>
       <MorningMessageMainPage />

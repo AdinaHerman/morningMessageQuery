@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'multi-channel-core';
 import { Toast } from '@igds/react/toast';
-import { useApiRequest,Title } from 'multi-channel-core';
+import { useApiRequest, Title } from 'multi-channel-core';
 import mockData from '../../mocks/morning-messages.mock.json';
 import type { SearchParamsType } from '../../types/apiTypes';
 import ResultsTable from './resultsTable/resultsTable';
-import style from'./resultsComponent.module.scss';
+import style from './resultsComponent.module.scss';
 
 const ResultsComponent = ({ searchFilterParams }: { searchFilterParams: SearchParamsType }) => {
     const [resultExist, setResultExist] = useState(false);
@@ -24,23 +24,21 @@ const ResultsComponent = ({ searchFilterParams }: { searchFilterParams: SearchPa
 
     return (
         <div>
-            {resultExist ? (
+            {resultExist && (
                 <>
                     <Title title={t('searchResults')} subTitle={''} />
                     <ResultsTable results={mockData.morningMessages} />
                 </>
-            ) : (
+            )}
+            {!resultExist && (
                 <Toast
                     className={style.toast}
                     type="inline"
                     variant="failure"
                 >
-                    <span>
-                       {t('noResultsMessage')}
-                    </span>
+                    <span>{t('noResultsMessage')}</span>
                 </Toast>
-            )
-            }
+            )}
         </div>
     );
 }

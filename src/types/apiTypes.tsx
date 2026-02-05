@@ -22,7 +22,7 @@ export type DropdownOptionType = {
 
 
 export type resultsType = {
-    "messageId": string;
+    "messageId": number;
     "category": number;
     "categoryName": string;
     "subject": string;

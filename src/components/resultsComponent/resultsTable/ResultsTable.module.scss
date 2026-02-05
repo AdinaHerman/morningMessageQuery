@@ -1,11 +1,15 @@
-.table-icon-cell {
-    margin-top: 14px;
-}
+// .iconCell{
+//     margin-top: 14px;
+// }
 
-
-.table-container {
+.tableContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 64px;
+}
+
+.fileIcon {
+    font-size: large;
+    color: #0c3058;
 }
